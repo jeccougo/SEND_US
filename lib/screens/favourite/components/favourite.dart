@@ -1,45 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shop_app/components/product_card.dart';
+import 'package:shop_app/models/Product.dart';
 
-class  FavouriteScreen extends StatelessWidget {
-  const  FavouriteScreen({
-    Key? key,
-  }) : super(key: key);
+import '../../../size_config.dart';
+import '../../home/components/section_title.dart';
 
+
+class PopularProducts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 115,
-      width: 115,
-      child: Stack(
-        fit: StackFit.expand,
-        clipBehavior: Clip.none,
-        children: [
-          CircleAvatar(
-            backgroundImage: AssetImage("assets/images/Profile Image.png"),
-          ),
-          Positioned(
-            right: -16,
-            bottom: 0,
-            child: SizedBox(
-              height: 46,
-              width: 46,
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50),
-                    side: BorderSide(color: Colors.white),
-                  ),
-                  primary: Colors.white,
-                  backgroundColor: Color(0xFFF5F6F9),
-                ),
-                onPressed: () {},
-                child: SvgPicture.asset("assets/icons/Camera Icon.svg"),
+    return Column(
+      children: [
+        Padding(
+          padding:
+          EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+          child: SectionTitle(title: "Popular Products", press: () {}),
+        ),
+        SizedBox(height: getProportionateScreenWidth(20)),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Column(
+            children: [
+              ...List.generate(
+                demoProducts.length,
+                    (index) {
+                  if (demoProducts[index].isFavourite)
+                    return ProductCard(product: demoProducts[index]);
+
+                  return SizedBox
+                      .shrink(); // here by default width and height is 0
+                },
               ),
-            ),
-          )
-        ],
-      ),
+              SizedBox(width: getProportionateScreenWidth(20)),
+            ],
+          ),
+        )
+      ],
     );
   }
 }

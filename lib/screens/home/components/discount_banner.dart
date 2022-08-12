@@ -18,7 +18,22 @@ class DiscountBanner extends StatelessWidget {
         vertical: getProportionateScreenWidth(15),
       ),
       decoration: BoxDecoration(
-        color: Color(0xff1565c0),
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            stops: [
+              0.1,
+              0.4,
+              0.6,
+              0.9,
+            ],
+            colors: [
+              Colors.blue,
+              Colors.blueAccent,
+              Colors.indigo,
+              Colors.lightBlueAccent,
+            ],
+          ),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Text.rich(

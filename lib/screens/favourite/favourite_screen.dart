@@ -11,6 +11,7 @@ class FavouriteScreen extends StatelessWidget {
     return Scaffold(
       appBar: buildAppBar(),
       body: Body(),
+
     );
   }
 }
@@ -22,7 +23,7 @@ AppBar buildAppBar() {
     title: Column(
       children: [
         Text(
-            "Chores",
+            "Favourites",
           style: TextStyle(color: Colors.black),
         ),
 

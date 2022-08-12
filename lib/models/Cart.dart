@@ -8,6 +8,7 @@ class Cart {
   final int numOfItem;
 
   Cart({required this.product, required this.numOfItem});
+
 }
 
 // Demo data for our cart

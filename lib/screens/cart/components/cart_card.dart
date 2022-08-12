@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/models/Cart.dart';
+import 'package:shop_app/models/Product.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -7,7 +8,7 @@ import '../../../size_config.dart';
 class CartCard extends StatelessWidget {
   const CartCard({
     Key? key,
-    required this.cart,
+    required this.cart, Product,
   }) : super(key: key);
 
   final Cart cart;
