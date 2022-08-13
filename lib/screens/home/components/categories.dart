@@ -10,14 +10,14 @@ class Categories extends StatelessWidget {
   Widget build(BuildContext context) {
 
     List<Map<String, dynamic>> categories = [
-      {"icon": "assets/icons/Flash Icon.png", "text": "Elec tronics", "route": RobanScreen.routeName},
-      {"icon": "assets/icons/Automobile.png", "text": "Auto mobile", "route": RobanScreen.routeName},
-      {"icon": "assets/icons/fashion.png", "text": "Fashion", "route": RobanScreen.routeName},
-      {"icon": "assets/icons/Gift Icon.png", "text": "Daily Gift", "route": RobanScreen.routeName},
-      {"icon": "assets/icons/Discover.png", "text": "Groceries", "route": RobanScreen.routeName},
-      {"icon": "assets/icons/Automobile.png", "text": "Tech", "route": RobanScreen.routeName},
-      {"icon": "assets/icons/Discover.png", "text": "Groceries", "route": RobanScreen.routeName},
-      {"icon": "assets/icons/fashion.png", "text": "Tech", "route": RobanScreen.routeName},
+      {"icon": "assets/icons/Flash Icon.png", "text": "Elec tronics",  "route": RobanScreen.routeName, "colored": 0xffff7407},
+      {"icon": "assets/icons/Automobile.png", "text": "Auto mobile", "route": RobanScreen.routeName, "colored": 0xffff7407},
+      {"icon": "assets/icons/fashion.png", "text": "Fashion", "route": RobanScreen.routeName, "colored": 0xffff0716},
+      {"icon": "assets/icons/Gift Icon.png", "text": "Daily Gift", "route": RobanScreen.routeName, "colored": 0xfffff007},
+      {"icon": "assets/icons/Discover.png", "text": "Groceries", "route": RobanScreen.routeName, "colored": 0xff7407ff},
+      {"icon": "assets/icons/Automobile.png", "text": "Tech", "route": RobanScreen.routeName, "colored": 0xff07ff74},
+      {"icon": "assets/icons/Discover.png", "text": "Groceries", "route": RobanScreen.routeName, "colored": 0xff4c2202},
+      {"icon": "assets/icons/fashion.png", "text": "Tech", "route": RobanScreen.routeName, "colored": 0xffff7407},
 
     ];
     return Padding(
@@ -32,6 +32,7 @@ class Categories extends StatelessWidget {
             (index) => CategoryCard(
               icon: categories[index]["icon"],
               text: categories[index]["text"],
+              colored: categories[index]["colored"],
               press: () => Navigator.pushNamed(context, categories[index]["route"] ),
             ),
           ),
@@ -40,10 +41,10 @@ class Categories extends StatelessWidget {
     );
   }
 }
-
 class CategoryCard extends StatelessWidget {
   const CategoryCard({
     Key? key,
+    this.colored,
     required this.icon,
     required this.text,
     required this.press,
@@ -51,6 +52,7 @@ class CategoryCard extends StatelessWidget {
   }) : super(key: key);
 
   final String? icon, text, route;
+  final int? colored;
   final GestureTapCallback press;
 
 
@@ -73,7 +75,7 @@ class CategoryCard extends StatelessWidget {
                 height: getProportionateScreenWidth(55),
                 width: getProportionateScreenWidth(55),
                 decoration: BoxDecoration(
-                  color: Color(0xff1565c0).withOpacity(0.20),
+                  color: Color(colored!).withOpacity(0.20),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Image.asset(icon!),
