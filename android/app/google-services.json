@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "774749650827",
+    "project_id": "send-us-86dbd",
+    "storage_bucket": "send-us-86dbd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:774749650827:android:0e1fcc3c2e66016197798e",
+        "android_client_info": {
+          "package_name": "com.techfaculty.sendus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "774749650827-lc9944r9ut2di202ld4gnctl42gs9c4c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4dzYtzmuyC5FmrUnsvIIHKStFCKoERJM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "774749650827-lc9944r9ut2di202ld4gnctl42gs9c4c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

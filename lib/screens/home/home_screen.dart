@@ -121,13 +121,21 @@ AppBar buildAppBar() {
 
     title: Column(
       children: [
-        Text(
-            "Chores",
-          style: TextStyle(color: Colors.black),
-        ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(width: 10,),
+                //ImageIcon(AssetImage("assets/images/choreslogo.png"),color: Colors.blue, size: 80,),
 
-      ],
-    ),
-  );
+                Text(
+                  "Chores",
+                  style: TextStyle(color: Colors.black),
+                ),
+
+            ],
+
+
+    ),],
+  ));
 
 }

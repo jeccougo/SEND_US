@@ -3,8 +3,12 @@ import 'package:shop_app/routes.dart';
 import 'package:shop_app/screens/profile/profile_screen.dart';
 import 'package:shop_app/screens/splash/splash_screen.dart';
 import 'package:shop_app/theme.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 

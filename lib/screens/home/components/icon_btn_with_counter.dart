@@ -38,7 +38,8 @@ class IconBtnWithCounter extends StatelessWidget {
             Positioned(
               top: -3,
               right: 0,
-              child: Container(
+              child:
+              Container(
                 height: getProportionateScreenWidth(16),
                 width: getProportionateScreenWidth(16),
                 decoration: BoxDecoration(
