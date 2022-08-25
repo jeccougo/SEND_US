@@ -23,8 +23,9 @@ class _BodyState extends State<Body> {
       return Future.value(false);
     },
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
+        padding: const EdgeInsets.fromLTRB(25, 10, 25, 0),
         child: ListView.builder(
+          shrinkWrap: true,
           itemCount: demoCarts.length,
           itemBuilder: (context, index) => Padding(
             padding: EdgeInsets.symmetric(vertical: 10),

@@ -47,19 +47,20 @@ class HomeScreen extends StatelessWidget {
 
             Padding(
               padding: const EdgeInsets.all(10),
-              child: InkWell(
+                child: InkWell(
 
-                borderRadius: BorderRadius.circular(10),
-                hoverColor: Colors.red.shade500,
-                child: ListTile(
-                  title: Text('My Orders'),
+                  borderRadius: BorderRadius.circular(10),
+                  hoverColor: Colors.red.shade500,
+                  child: ListTile(
+                    title: Text('My Orders'),
 
-                  leading: const Icon(Icons.shopping_basket,
-                    color: Colors.blue,),
-                  onTap: () {
-                  },
+                    leading: const Icon(Icons.shopping_basket,
+                      color: Colors.blue,),
+                    onTap: () {
+                    },
+                  ),
                 ),
-              ),
+
             ),
 
             Padding(

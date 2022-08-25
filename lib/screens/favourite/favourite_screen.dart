@@ -1,6 +1,8 @@
+
+
 import 'package:flutter/material.dart';
-import 'package:shop_app/components/coustom_bottom_nav_bar.dart';
-import 'package:shop_app/enums.dart';
+import 'package:flutter_svg/svg.dart';
+
 
 import 'components/body.dart';
 
@@ -9,23 +11,50 @@ class FavouriteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(),
+      appBar: buildAppBar(context),
       body: Body(),
+
 
     );
   }
 }
 
 
-AppBar buildAppBar() {
+AppBar buildAppBar(BuildContext context) {
   return AppBar(
     automaticallyImplyLeading: false,
     title: Column(
       children: [
-        Text(
-            "Favourites",
-          style: TextStyle(color: Colors.black),
+        GestureDetector(
+          onTap: (){Navigator.of(context).pop();} ,
+          child: Align(
+            alignment: Alignment.topLeft,
+            child: Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Row(
+                children: [
+                  SizedBox(width: 10,),
+
+                  SvgPicture.asset(
+                    "assets/icons/Back ICon.svg",
+                    height: 25,
+                  ),
+                  SizedBox(width: 25,),
+                  Text(
+                    "Favourites",
+                    style: TextStyle(color: Colors.black, fontSize: 25
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
+
+        SizedBox(
+          width: 10,
+        ),
+
 
       ],
     ),

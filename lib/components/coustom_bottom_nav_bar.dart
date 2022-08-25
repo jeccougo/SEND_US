@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shop_app/screens/cart/cart_screen.dart';
 import 'package:shop_app/screens/favourite/favourite_screen.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/screens/profile/profile_screen.dart';
@@ -50,9 +51,9 @@ class CustomBottomNavBar extends StatelessWidget {
                     Navigator.pushReplacementNamed(context, HomeScreen.routeName),
               ),
               IconButton(
-                icon: SvgPicture.asset("assets/icons/Heart Icon.svg"),
+                icon: SvgPicture.asset("assets/icons/Cart Icon.svg"),
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, FavouriteScreen.routeName);
+                  Navigator.pushReplacementNamed(context, CartScreen.routeName);
 
                 },
               ),

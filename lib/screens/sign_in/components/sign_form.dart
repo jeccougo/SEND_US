@@ -1,13 +1,22 @@
+import 'dart:async';
+import 'dart:async';
+import 'dart:async';
+import 'dart:core';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app/components/custom_surfix_icon.dart';
 import 'package:shop_app/components/form_error.dart';
 import 'package:shop_app/helper/keyboard.dart';
 import 'package:shop_app/screens/forgot_password/forgot_password_screen.dart';
 import 'package:shop_app/screens/login_success/login_success_screen.dart';
-
 import '../../../components/default_button.dart';
 import '../../../constants.dart';
+import '../../../models/UserModel.dart';
 import '../../../size_config.dart';
+import '../../home/home_screen.dart';
 
 class SignForm extends StatefulWidget {
   @override
@@ -20,6 +29,11 @@ class _SignFormState extends State<SignForm> {
   String? password;
   bool? remember = false;
   final List<String?> errors = [];
+
+  FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
+
+  SharedPreferences? prefs;
+  final String userKey ='user';
 
   void addError({String? error}) {
     if (!errors.contains(error))
@@ -34,6 +48,47 @@ class _SignFormState extends State<SignForm> {
         errors.remove(error);
       });
   }
+
+  ///Authenticate the user in
+  Future<bool> signIn(
+      BuildContext context, String email, String secretCode) async {
+    final _user;
+    try {
+      _user = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: secretCode)
+          .then((value) => {
+            setUserId(value.user!.uid)
+      });
+      Navigator.pushNamed(context, HomeScreen.routeName);
+      return true;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'wrong-password') {
+      }
+      return false;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
+
+
+
+  ///cache user id
+  void setUserId(String id) async{
+    await getUserWithId(id: id);
+    prefs = await SharedPreferences.getInstance();
+    prefs!.setString(userKey, id);
+  }
+
+  ///get user id
+  Future<UserModel> getUserWithId({String? id}) async{
+    final _info =
+    await _firebaseFirestore.collection("users").doc(id).get();
+    final _data = UserModel.fromFirestore(_info.data()!);
+    return _data;
+  }
+
 
   @override
   Widget build(BuildContext context) {

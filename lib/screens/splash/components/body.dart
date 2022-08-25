@@ -5,6 +5,7 @@ import 'package:shop_app/size_config.dart';
 
 // This is the best practice
 import '../../home/home_screen.dart';
+import '../../sign_up/sign_up_screen.dart';
 import '../components/splash_content.dart';
 import '../../../components/default_button.dart';
 
@@ -68,17 +69,23 @@ class _BodyState extends State<Body> {
                       ),
                     ),
                     Spacer(flex: 3),
-                    DefaultButton(
-                      text: "Continue",
-                      press: () {
-                        Navigator.pushReplacementNamed(context, HomeScreen.routeName);
-                      },
-                    ),
+
+
                     Spacer(),
                   ],
                 ),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child:
+              DefaultButton(
+                    text: "Next",
+                    press: () {
+                      Navigator.pushReplacementNamed(context, SignInScreen.routeName);
+                    },
+                  ),
+              ),
           ],
         ),
       ),
