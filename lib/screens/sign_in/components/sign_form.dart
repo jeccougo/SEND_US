@@ -1,6 +1,3 @@
-import 'dart:async';
-import 'dart:async';
-import 'dart:async';
 import 'dart:core';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -88,6 +85,9 @@ class _SignFormState extends State<SignForm> {
     final _data = UserModel.fromFirestore(_info.data()!);
     return _data;
   }
+
+
+
 
 
   @override

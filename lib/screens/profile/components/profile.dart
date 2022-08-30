@@ -52,7 +52,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                                   shape: BoxShape.circle,
                                   image: DecorationImage(
                                     image:
-                                        AssetImage('assets/images/profile.jpg'),
+                                        AssetImage('assets/images/profilef.jpg'),
                                     fit: BoxFit.cover,
                                   ),
                                 )),

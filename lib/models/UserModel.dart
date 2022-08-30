@@ -8,7 +8,7 @@ class UserModel {
   String? gender;
   Timestamp? timeRegistered;
   List<dynamic>? cart;
-  late bool flagged;
+  bool flagged;
 
 
   UserModel({
