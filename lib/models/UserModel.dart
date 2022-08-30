@@ -4,6 +4,7 @@ class UserModel {
   String? email;
   String? secretCode;
   String? username;
+  String? userId;
   String? imageUrl;
   String? gender;
   Timestamp? timeRegistered;
@@ -15,6 +16,7 @@ class UserModel {
     this.email,
     this.secretCode,
     this.username,
+    this.userId,
     this.imageUrl,
     this.gender,
     this.timeRegistered,
@@ -27,6 +29,7 @@ class UserModel {
         email: json['email']?? '',
         secretCode: json['secretCode']?? '',
         username: json['username']?? '',
+        userId: json['userId']?? '',
         imageUrl: json['imageUrl']?? '',
         gender: json['gender']?? '',
         timeRegistered: json['timeRegistered']?? '',
@@ -40,6 +43,7 @@ class UserModel {
       email: json['email']?? '',
       secretCode: json['secretCode']?? '',
       username: json['username']?? '',
+      userId: json['userId']?? '',
       imageUrl: json['imageUrl']?? '',
       gender: json['gender']?? '',
       timeRegistered: json['timeRegistered']?? '',
@@ -52,6 +56,7 @@ class UserModel {
     'email' : email,
     'secretCode' : secretCode,
     'username' : username,
+    'userId' : userId,
     'imageUrl' : imageUrl,
     'gender' : gender,
     'timeRegistered' : timeRegistered,

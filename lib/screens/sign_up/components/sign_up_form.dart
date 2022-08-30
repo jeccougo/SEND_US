@@ -8,6 +8,7 @@ import 'package:shop_app/components/form_error.dart';
 import 'package:shop_app/screens/complete_profile/complete_profile_screen.dart';
 
 import '../../../constants.dart';
+import '../../../firebaseServices.dart';
 import '../../../models/UserModel.dart';
 import '../../../size_config.dart';
 import '../../home/home_screen.dart';
@@ -26,10 +27,13 @@ class _SignUpFormState extends State<SignUpForm> {
   bool remember = false;
   final List<String?> errors = [];
 
+
+  final FirebaseServices firebaseServices = FirebaseServices();
+
+
   FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
   SharedPreferences? prefs;
-  final String userKey ='user';
 
   void addError({String? error}) {
     if (!errors.contains(error))
@@ -48,72 +52,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
 
 
-  ///cache user id
-  void setUserId(String id) async{
-    await getUserWithId(id: id);
-    prefs = await SharedPreferences.getInstance();
-    prefs!.setString(userKey, id);
-  }
 
-  ///get user id
-  Future<UserModel> getUserWithId({String? id}) async{
-    final _info =
-    await _firebaseFirestore.collection("users").doc(id).get();
-    final _data = UserModel.fromFirestore(_info.data()!);
-    return _data;
-  }
-
-
-
-  /// SignUp user
-  Future<bool> register(
-      BuildContext context, String email, String secretCode,) async {
-    final _user = await FirebaseAuth.instance
-        .createUserWithEmailAndPassword(email: email, password: secretCode);
-    final _email = email;
-    final _secretCode = secretCode;
-
-    try {
-      final email = _email;
-      final secretCode = _secretCode;
-      final timeRegistered = FieldValue.serverTimestamp();
-      final userId = _user.user?.uid;
-
-      FirebaseFirestore.instance
-          .collection("users")
-          .doc(_user.user!.uid)
-          .set({
-        "userId": userId,
-
-        "email": email,
-        "secretCode": secretCode,
-        "timeRegistered": timeRegistered,
-      },
-      );
-      print('Email: $email');
-      print('User Id: $userId');
-      print('Secret Code: $secretCode');
-
-      setUserId(_user.user!.uid);
-
-      await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: secretCode)
-          .then((value) => {
-        setUserId(value.user!.uid),
-      });
-
-      Navigator.pushNamed(context, HomeScreen.routeName);
-      return true;
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-      } else if (e.code.length < 4) {
-      } else if (e.code == 'email-already-in-use') {
-      }
-      return false;
-    } catch (e) {
-      return false;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -130,11 +69,11 @@ class _SignUpFormState extends State<SignUpForm> {
           SizedBox(height: getProportionateScreenHeight(40)),
           DefaultButton(
             text: "Continue",
-            press: () {
+            press: () async {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 // if all are valid then go to success screen
-                register(context, email.toString(), password.toString(),);
+                await firebaseServices.register(context, email.toString(), password.toString(),);
               }
             },
           ),

@@ -11,6 +11,7 @@ import 'package:shop_app/screens/forgot_password/forgot_password_screen.dart';
 import 'package:shop_app/screens/login_success/login_success_screen.dart';
 import '../../../components/default_button.dart';
 import '../../../constants.dart';
+import '../../../firebaseServices.dart';
 import '../../../models/UserModel.dart';
 import '../../../size_config.dart';
 import '../../home/home_screen.dart';
@@ -26,6 +27,9 @@ class _SignFormState extends State<SignForm> {
   String? password;
   bool? remember = false;
   final List<String?> errors = [];
+
+  final FirebaseServices firebaseServices = FirebaseServices();
+
 
   FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
@@ -44,46 +48,6 @@ class _SignFormState extends State<SignForm> {
       setState(() {
         errors.remove(error);
       });
-  }
-
-  ///Authenticate the user in
-  Future<bool> signIn(
-      BuildContext context, String email, String secretCode) async {
-    final _user;
-    try {
-      _user = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: secretCode)
-          .then((value) => {
-            setUserId(value.user!.uid)
-      });
-      Navigator.pushNamed(context, HomeScreen.routeName);
-      return true;
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'wrong-password') {
-      }
-      return false;
-    } catch (e) {
-      print(e);
-      return false;
-    }
-  }
-
-
-
-
-  ///cache user id
-  void setUserId(String id) async{
-    await getUserWithId(id: id);
-    prefs = await SharedPreferences.getInstance();
-    prefs!.setString(userKey, id);
-  }
-
-  ///get user id
-  Future<UserModel> getUserWithId({String? id}) async{
-    final _info =
-    await _firebaseFirestore.collection("users").doc(id).get();
-    final _data = UserModel.fromFirestore(_info.data()!);
-    return _data;
   }
 
 
@@ -127,11 +91,13 @@ class _SignFormState extends State<SignForm> {
           SizedBox(height: getProportionateScreenHeight(20)),
           DefaultButton(
             text: "Continue",
-            press: () {
+            press: () async {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 // if all are valid then go to success screen
                 KeyboardUtil.hideKeyboard(context);
+                await firebaseServices.signIn(context, email.toString(), password.toString(),);
+
                 Navigator.pushNamed(context, LoginSuccessScreen.routeName);
               }
             },
