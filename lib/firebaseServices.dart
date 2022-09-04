@@ -85,14 +85,16 @@ class FirebaseServices extends ChangeNotifier {
 
   /// SignUp user
   Future<bool> register(
-      BuildContext context, String email, String secretCode,) async {
+      BuildContext context, String email, String secretCode, String userName,) async {
     final _user = await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: secretCode);
     final _email = email;
+    final _userName = userName;
     final _secretCode = secretCode;
 
     try {
       final email = _email;
+      final userName = _userName;
       final secretCode = _secretCode;
       final timeRegistered = FieldValue.serverTimestamp();
       final userId = _user.user?.uid;
@@ -102,7 +104,7 @@ class FirebaseServices extends ChangeNotifier {
           .doc(_user.user!.uid)
           .set({
         "userId": userId,
-
+        "userName": userName,
         "email": email,
         "secretCode": secretCode,
         "timeRegistered": timeRegistered,
@@ -181,6 +183,20 @@ class FirebaseServices extends ChangeNotifier {
     await ref.doc(docId).set(_cartModel.toJson());
 
   }
+
+
+  /// [featured Session Comments] -> get users featured sessions comments
+  Stream<QuerySnapshot<Map<String, dynamic>>> getUsersCart(
+      String id) {
+    return _firebaseFirestore
+        .collection('users')
+        .doc(id)
+        .collection('userCart')
+       // .orderBy('timeCreated', descending: false)
+        .snapshots();
+  }
+
+
 
 
 

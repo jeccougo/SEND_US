@@ -1,5 +1,9 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, deprecated_member_use
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_app/firebaseServices.dart';
+import 'package:shop_app/models/UserModel.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -12,10 +16,18 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
   bool _status = true;
   final FocusNode myFocusNode = FocusNode();
+  UserModel userModel = UserModel();
+  final FirebaseServices firebaseServices = FirebaseServices();
+  User? currentUser = FirebaseAuth.instance.currentUser;
 
   @override
   void initState() {
+  getUser();
     super.initState();
+  }
+
+  void getUser() async {
+    userModel = await firebaseServices.getUserInfo();
   }
 
   @override
@@ -116,7 +128,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                           )),
                       Padding(
                           padding: EdgeInsets.only(
-                              left: 25.0, right: 25.0, top: 25.0),
+                              left: 25.0, right: 25.0, top: 25.0, bottom: 15.0,),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: <Widget>[
@@ -141,19 +153,51 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                             mainAxisSize: MainAxisSize.max,
                             children: <Widget>[
                               Flexible(
-                                child: TextField(
-                                  decoration: const InputDecoration(
-                                    hintText: "Enter Your Name",
-                                  ),
-                                  enabled: !_status,
-                                  autofocus: !_status,
+                                child: FutureBuilder<
+                                    DocumentSnapshot<Map<String, dynamic>>>(
+                                  future: FirebaseFirestore.instance
+                                      .collection("users")
+                                      .doc(currentUser!.uid)
+                                      .get(),
+                                  builder: (_, snapshot) {
+                                    if (snapshot.hasData) {
+                                      var data = snapshot.data!.data();
+                                      final userName = data?["userName"] ?? "Shopper Chukwuma";
+                                      debugPrint(
+                                          " This is the user name for this user ${userName.toString()}");
+                                      return Container(
+                                        height: 45,
+                                        width: 400,
+                                        decoration: BoxDecoration(
+                                          color: Colors.grey.shade50,
+                                          borderRadius: BorderRadius.circular(15),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.fromLTRB(15, 10, 0, 10),
+                                          child: Text(
+                                            userName.toString(),
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                                fontSize: 18.0,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                      );
+                                    }
+
+                                    return Center(
+                                        child: CircularProgressIndicator());
+                                  },
                                 ),
                               ),
                             ],
                           )),
+
+
+
                       Padding(
                           padding: EdgeInsets.only(
-                              left: 25.0, right: 25.0, top: 25.0),
+                            left: 25.0, right: 25.0, top: 25.0, bottom: 15.0,),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: <Widget>[
@@ -162,7 +206,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                                 mainAxisSize: MainAxisSize.min,
                                 children: const <Widget>[
                                   Text(
-                                    'Email ID',
+                                    'Email',
                                     style: TextStyle(
                                         fontSize: 16.0,
                                         fontWeight: FontWeight.bold),
@@ -178,17 +222,52 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                             mainAxisSize: MainAxisSize.max,
                             children: <Widget>[
                               Flexible(
-                                child: TextField(
-                                  decoration: const InputDecoration(
-                                      hintText: "Enter Email ID"),
-                                  enabled: !_status,
+                                child: FutureBuilder<
+                                    DocumentSnapshot<Map<String, dynamic>>>(
+                                  future: FirebaseFirestore.instance
+                                      .collection("users")
+                                      .doc(currentUser!.uid)
+                                      .get(),
+                                  builder: (_, snapshot) {
+                                    if (snapshot.hasData) {
+                                      var data = snapshot.data!.data();
+                                      final userName = data?["email"] ?? "Shopper Chukwuma";
+                                      debugPrint(
+                                          " This is the user name for this user ${userName.toString()}");
+                                      return Container(
+                                        height: 45,
+                                        width: 400,
+                                        decoration: BoxDecoration(
+                                          color: Colors.grey.shade50,
+                                          borderRadius: BorderRadius.circular(15),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.fromLTRB(15, 10, 0, 10),
+                                          child: Text(
+                                            userName.toString(),
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 18.0,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                      );
+                                    }
+
+                                    return Center(
+                                        child: CircularProgressIndicator());
+                                  },
                                 ),
                               ),
                             ],
                           )),
+
+
+
+
                       Padding(
                           padding: EdgeInsets.only(
-                              left: 25.0, right: 25.0, top: 25.0),
+                            left: 25.0, right: 25.0, top: 25.0, bottom: 15.0,),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: <Widget>[
@@ -197,7 +276,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                                 mainAxisSize: MainAxisSize.min,
                                 children: const <Widget>[
                                   Text(
-                                    'Mobile',
+                                    'Phone No:',
                                     style: TextStyle(
                                         fontSize: 16.0,
                                         fontWeight: FontWeight.bold),
@@ -206,6 +285,9 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                               ),
                             ],
                           )),
+
+
+
                       Padding(
                           padding: EdgeInsets.only(
                               left: 25.0, right: 25.0, top: 2.0),
@@ -213,45 +295,48 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                             mainAxisSize: MainAxisSize.max,
                             children: <Widget>[
                               Flexible(
-                                child: TextField(
-                                  decoration: const InputDecoration(
-                                      hintText: "Enter Mobile Number"),
-                                  enabled: !_status,
+                                child: FutureBuilder<
+                                    DocumentSnapshot<Map<String, dynamic>>>(
+                                  future: FirebaseFirestore.instance
+                                      .collection("users")
+                                      .doc(currentUser!.uid)
+                                      .get(),
+                                  builder: (_, snapshot) {
+                                    if (snapshot.hasData) {
+                                      var data = snapshot.data!.data();
+                                      final userName = data?["phone no"] ?? "Shopper Chukwuma";
+                                      debugPrint(
+                                          " This is the user name for this user ${userName.toString()}");
+                                      return Container(
+                                        height: 45,
+                                        width: 400,
+                                        decoration: BoxDecoration(
+                                          color: Colors.grey.shade50,
+                                          borderRadius: BorderRadius.circular(15),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.fromLTRB(15, 10, 0, 10),
+                                          child: Text(
+                                            userName.toString(),
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 18.0,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                      );
+                                    }
+
+                                    return Center(
+                                        child: CircularProgressIndicator());
+                                  },
                                 ),
                               ),
                             ],
                           )),
-                      Padding(
-                          padding: EdgeInsets.only(
-                              left: 25.0, right: 25.0, top: 25.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              Expanded(
-                                flex: 2,
-                                child: Container(
-                                  child: Text(
-                                    'Pin Code',
-                                    style: TextStyle(
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                flex: 2,
-                                child: Container(
-                                  child: Text(
-                                    'State',
-                                    style: TextStyle(
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )),
+
+
+
                       Padding(
                           padding: EdgeInsets.only(
                               left: 25.0, right: 25.0, top: 2.0),

@@ -37,7 +37,7 @@ AppBar buildAppBar(BuildContext context) {
 
                   SvgPicture.asset(
                     "assets/icons/Back ICon.svg",
-                    height: 25,
+                    height: 20,
                   ),
                   SizedBox(width: 25,),
                   Text(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shop_app/screens/cart/cart_screen.dart';
+import 'package:shop_app/screens/cart/usersCartWidget.dart';
 import 'package:shop_app/screens/favourite/favourite_screen.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/screens/profile/profile_screen.dart';
@@ -53,7 +54,8 @@ class CustomBottomNavBar extends StatelessWidget {
               IconButton(
                 icon: SvgPicture.asset("assets/icons/Cart Icon.svg"),
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, CartScreen.routeName);
+                  Navigator.push(context, MaterialPageRoute(builder: (context) =>  UsersCart()));
+                  Navigator.pushReplacementNamed(context, UsersCart.routeName);
 
                 },
               ),
@@ -70,6 +72,7 @@ class CustomBottomNavBar extends StatelessWidget {
                       : inActiveIconColor,
                 ),
                 onPressed: () =>
+
                     Navigator.pushNamed(context, ProfileScreen.routeName),
               ),
             ],

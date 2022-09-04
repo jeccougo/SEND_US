@@ -27,10 +27,10 @@ List<RobanProduct> demoProducts = [
   RobanProduct(
     id: 1,
     images: [
-      "assets/images/ps4_console_white_1.png",
-      "assets/images/ps4_console_white_2.png",
-      "assets/images/ps4_console_white_3.png",
-      "assets/images/ps4_console_white_4.png",
+      "assets/images/ivm.jpg",
+      "assets/images/ivm1.jpg",
+      "assets/images/ivm2.jpg",
+      "assets/images/toyota1.jpg",
     ],
     colors: [
       Color(0xFFF6625E),
@@ -38,8 +38,8 @@ List<RobanProduct> demoProducts = [
       Color(0xFFDECB9C),
       Colors.white,
     ],
-    title: "Wireless ps4 controller™",
-    price: 64.99,
+    title: "Ivm Yaris™",
+    price: 10000.99,
     description: description,
     rating: 4.8,
     isFavourite: true,

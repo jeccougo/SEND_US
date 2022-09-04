@@ -7,7 +7,7 @@ class CartModel {
   String? productImageUrl;
   String? numOfProducts;
   Timestamp? timeAdded;
-  List<dynamic>? cart;
+  //List<dynamic>? cart;
   bool isCheckedOut;
 
 
@@ -18,7 +18,7 @@ class CartModel {
     this.productImageUrl,
     this.numOfProducts,
     this.timeAdded,
-    this.cart,
+   // this.cart,
     this.isCheckedOut = false,
   });
 
@@ -30,7 +30,7 @@ class CartModel {
       productImageUrl: json['productImageUrl']?? '',
       numOfProducts: json['numOfProducts']?? '',
       timeAdded: json['timeAdded']?? '',
-      cart: json['cart']?? '',
+     // cart: json['cart']?? '',
       isCheckedOut: json['isCheckedOut'],
     );
   }
@@ -43,7 +43,7 @@ class CartModel {
       productImageUrl: json['productImageUrl']?? '',
       numOfProducts: json['numOfProducts']?? '',
       timeAdded: json['timeAdded']?? '',
-      cart: json['cart']?? '',
+      //cart: json['cart']?? '',
       isCheckedOut: json['isCheckedOut']?? false,
     );
   }
@@ -55,7 +55,7 @@ class CartModel {
     'productImageUrl' : productImageUrl,
     'numOfProducts' : numOfProducts,
     'timeAdded' : timeAdded,
-    'cart'  : cart,
+    //'cart'  : cart,
     'isCheckedOut' : isCheckedOut,
 
   };
