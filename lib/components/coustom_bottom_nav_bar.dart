@@ -55,7 +55,7 @@ class CustomBottomNavBar extends StatelessWidget {
                 icon: SvgPicture.asset("assets/icons/Cart Icon.svg"),
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) =>  UsersCart()));
-                  Navigator.pushReplacementNamed(context, UsersCart.routeName);
+                  //Navigator.pushReplacementNamed(context, CartScreen.routeName);
 
                 },
               ),
