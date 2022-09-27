@@ -4,8 +4,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shop_app/models/Product.dart';
 import 'package:shop_app/screens/details/details_screen.dart';
 
-import '../constants.dart';
-import '../size_config.dart';
+import '../../../constants.dart';
+import '../../../size_config.dart';
+
 
 class ProductCard extends StatelessWidget {
   const ProductCard({
@@ -74,9 +75,9 @@ class ProductCard extends StatelessWidget {
                   Text(
                     "\N${product.price}",
                     style: TextStyle(
-                      fontSize: getProportionateScreenWidth(18),
-                      fontWeight: FontWeight.w600,
-                      color: kPrimaryColor
+                        fontSize: getProportionateScreenWidth(18),
+                        fontWeight: FontWeight.w600,
+                        color: kPrimaryColor
                     ),
                   ),
                   InkWell(

@@ -82,7 +82,7 @@ class _BodyState extends State<Body> {
               DefaultButton(
                     text: "Next",
                     press: () {
-                      Navigator.pushReplacementNamed(context, SignInScreen.routeName);
+                      Navigator.pushReplacementNamed(context, HomeScreen.routeName);
                     },
                   ),
               ),

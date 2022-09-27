@@ -176,11 +176,29 @@ class FirebaseServices extends ChangeNotifier {
 
         timeAdded: Timestamp.now(),
         productImageUrl: product.images.first,
-        productName: product.title,
+        productName: product.productName,
         productPrice: product.price.toString()
     );
 
     await ref.doc(docId).set(_cartModel.toJson());
+
+  }
+
+
+  void removeFromCart(BuildContext context, CartModel cartModel) async {
+    // if (!await isUserSignIn(context)) return;
+    final userId = currentUser?.uid.toString();
+
+
+    CollectionReference ref =
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(userId)
+        .collection("userCart");
+
+    String docId = ref.doc().id;
+
+    await ref.doc(docId).delete();
 
   }
 

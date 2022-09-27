@@ -11,7 +11,9 @@ import 'special_offers.dart';
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return ListView(
+      physics: BouncingScrollPhysics(),
       children: [
         SizedBox(height: getProportionateScreenHeight(20)),
         HomeHeader(),

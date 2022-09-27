@@ -23,6 +23,7 @@ class Categories extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(getProportionateScreenWidth(20)),
       child: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

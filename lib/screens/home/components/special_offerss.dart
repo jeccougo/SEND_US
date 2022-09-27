@@ -23,6 +23,7 @@ class SpecialOfferss extends StatelessWidget {
         ),
         SizedBox(height: getProportionateScreenWidth(20)),
         SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [

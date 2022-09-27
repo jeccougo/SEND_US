@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Product {
   final int id;
-  final String title, description;
+  final String productName, description;
   final List<String> images;
   final List<Color> colors;
   final double rating, price;
@@ -15,7 +15,7 @@ class Product {
     this.rating = 0.0,
     this.isFavourite = false,
     this.isPopular = false,
-    required this.title,
+    required this.productName,
     required this.price,
     required this.description,
   });
@@ -27,10 +27,10 @@ List<Product> demoProducts = [
   Product(
     id: 1,
     images: [
-      "assets/images/ivm.jpg",
-      "assets/images/ivm1.jpg",
-      "assets/images/ivm2.jpg",
-      "assets/images/toyota1.jpg",
+      "https://firebasestorage.googleapis.com/v0/b/send-us-86dbd.appspot.com/o/Stores%2Fivm.jpg?alt=media&token=3ec14b9a-e8f0-4f5a-955e-4450e3fe0fb6",
+      "https://firebasestorage.googleapis.com/v0/b/send-us-86dbd.appspot.com/o/Stores%2Fivm1.jpg?alt=media&token=2f35e57a-b102-458a-8319-74db9e878eaf",
+      "https://firebasestorage.googleapis.com/v0/b/send-us-86dbd.appspot.com/o/Stores%2Fivm2.jpg?alt=media&token=dd3cb9e4-607d-4563-939b-a317d72759d3",
+      "https://firebasestorage.googleapis.com/v0/b/send-us-86dbd.appspot.com/o/Stores%2Fivm.jpg?alt=media&token=3ec14b9a-e8f0-4f5a-955e-4450e3fe0fb6",
     ],
     colors: [
       Color(0xFFF6625E),
@@ -38,8 +38,8 @@ List<Product> demoProducts = [
       Color(0xFFDECB9C),
       Colors.white,
     ],
-    title: "Ivm Yaris™",
-    price: 1000000.99,
+    productName: "Ivm Yaris™",
+    price: 100.99,
     description: description,
     rating: 4.8,
     isFavourite: true,
@@ -48,7 +48,7 @@ List<Product> demoProducts = [
   Product(
     id: 2,
     images: [
-      "assets/images/Image Popular Product 2.png",
+      "https://firebasestorage.googleapis.com/v0/b/send-us-86dbd.appspot.com/o/Stores%2Ftshirt.png?alt=media&token=547d8178-9eda-457c-801c-0fe20bc44592",
     ],
     colors: [
       Color(0xFFF6625E),
@@ -56,7 +56,7 @@ List<Product> demoProducts = [
       Color(0xFFDECB9C),
       Colors.white,
     ],
-    title: "Nike Sport White - Man Pant",
+    productName: "Nike Sport White",
     price: 50.5,
     description: description,
     rating: 4.1,
@@ -65,7 +65,7 @@ List<Product> demoProducts = [
   Product(
     id: 3,
     images: [
-      "assets/images/glap.png",
+      "https://firebasestorage.googleapis.com/v0/b/send-us-86dbd.appspot.com/o/Stores%2FImage%20Popular%20Product%202.png?alt=media&token=647e1eb5-e027-4609-a5a7-b1d903f05b5f",
     ],
     colors: [
       Color(0xFFF6625E),
@@ -73,7 +73,7 @@ List<Product> demoProducts = [
       Color(0xFFDECB9C),
       Colors.white,
     ],
-    title: "Gloves XC Omega - Polygon",
+    productName: "Gloves XC Omega",
     price: 36.55,
     description: description,
     rating: 4.1,
@@ -83,7 +83,7 @@ List<Product> demoProducts = [
   Product(
     id: 4,
     images: [
-      "assets/images/wireless headset.png",
+      "https://firebasestorage.googleapis.com/v0/b/send-us-86dbd.appspot.com/o/Stores%2FImage%20Popular%20Product%203.png?alt=media&token=0004a78e-a2d5-4b6d-a409-d1ee617ade5d",
     ],
     colors: [
       Color(0xFFF6625E),
@@ -91,7 +91,7 @@ List<Product> demoProducts = [
       Color(0xFFDECB9C),
       Colors.white,
     ],
-    title: "Logitech Head",
+    productName: "Logitech Head",
     price: 20.20,
     description: description,
     rating: 4.1,
@@ -103,7 +103,7 @@ List<Product> demoProducts = [
   Product(
     id: 5,
     images: [
-      "assets/images/wireless headset.png",
+      "https://firebasestorage.googleapis.com/v0/b/send-us-86dbd.appspot.com/o/Stores%2FImage%20Popular%20Product%201.png?alt=media&token=2cd4bd4b-3632-4534-a696-090877993090",
     ],
     colors: [
       Color(0xFFF6625E),
@@ -111,7 +111,7 @@ List<Product> demoProducts = [
       Color(0xFFDECB9C),
       Colors.white,
     ],
-    title: "Logitech Head",
+    productName: "Logitech Head",
     price: 20.20,
     description: description,
     rating: 4.1,
@@ -123,7 +123,7 @@ List<Product> demoProducts = [
   Product(
     id: 6,
     images: [
-      "assets/images/wireless headset.png",
+      "https://firebasestorage.googleapis.com/v0/b/send-us-86dbd.appspot.com/o/Stores%2Fproduct%201%20image.png?alt=media&token=40283270-9cf7-450d-b919-ca8f738b96f5",
     ],
     colors: [
       Color(0xFFF6625E),
@@ -131,7 +131,7 @@ List<Product> demoProducts = [
       Color(0xFFDECB9C),
       Colors.white,
     ],
-    title: "Logitech Head",
+    productName: "Logitech Head",
     price: 20.20,
     description: description,
     rating: 4.1,

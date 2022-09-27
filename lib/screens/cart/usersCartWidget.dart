@@ -65,7 +65,12 @@ class _UsersCartState extends State<UsersCart> {
                         .toList();
                     return ListView(
 
+
+                      physics: BouncingScrollPhysics(),
+
                       children: [
+
+
 
                         ..._cartList
                             .map((element) => Body(cartModel: element)
@@ -84,3 +89,5 @@ class _UsersCartState extends State<UsersCart> {
     );
   }
 }
+
+
